@@ -52,7 +52,7 @@ const GAME_CONFIG = {
     thrust: -0.65,          // Continuous lift while holding
     tapImpulse: -5.8,       // Agile jump impulse per tap
     maxSpeedY: 8.0,
-    baseScrollSpeed: 4.85,  // Exact initial speed matching LB_Game_18_12_2 (speedScroll=9 @ 60fps = 0.75 screen/s)
+    baseScrollSpeed: 5.72,  // +18% faster scroll speed for the 500-point version
     targetScore: 500
 };
 
@@ -1744,11 +1744,11 @@ class Game {
 
 
 
-        // Dynamic speed & obstacle progression (increases with score 0 -> 300)
+        // Dynamic speed & obstacle progression (increases with score 0 -> 500)
 
         const progressRatio = Math.min(1.0, this.score / this.targetScore);
 
-        const currentSpeed = GAME_CONFIG.baseScrollSpeed + progressRatio * 1.8;
+        const currentSpeed = GAME_CONFIG.baseScrollSpeed + progressRatio * 2.1;
 
 
 
@@ -2404,14 +2404,14 @@ class Game {
 
 
         const trackFoods = [
-            { type: 'dango', width: 100, height: 94, points: 15 },
-            { type: 'dimsumFlower', width: 100, height: 95, points: 15 },
-            { type: 'coinLB', width: 90, height: 90, points: 15 },
-            { type: 'pikachu', width: 96, height: 116, points: 15 },
-            { type: 'icecream', width: 95, height: 103, points: 15 },
-            { type: 'ramen', width: 104, height: 99, points: 15 },
-            { type: 'onigiri', width: 106, height: 83, points: 15 },
-            { type: 'bao', width: 100, height: 95, points: 15 }
+            { type: 'dango', width: 100, height: 94, points: 25 },
+            { type: 'dimsumFlower', width: 100, height: 95, points: 25 },
+            { type: 'coinLB', width: 90, height: 90, points: 25 },
+            { type: 'pikachu', width: 96, height: 116, points: 25 },
+            { type: 'icecream', width: 95, height: 103, points: 25 },
+            { type: 'ramen', width: 104, height: 99, points: 25 },
+            { type: 'onigiri', width: 106, height: 83, points: 25 },
+            { type: 'bao', width: 100, height: 95, points: 25 }
         ];
 
 
@@ -2561,8 +2561,8 @@ class Game {
 
 
     collectItem(col) {
-        // Фиксированно +15 баллов за каждый пойманный элемент, максимум 300 баллов
-        const pts = 15;
+        // Фиксированно +25 баллов за каждый пойманный элемент, максимум 500 баллов
+        const pts = 25;
         this.score = Math.min(this.targetScore, this.score + pts);
 
         const textColor = col.type === 'pikachu' ? '#ffe600' : '#ffd166';
